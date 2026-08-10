@@ -84,15 +84,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Plan target goals, keep a calm to-do list and borrow routines from real people, in a seasonal space that feels like home.",
+          "Plan target goals, keep a calm to-do list, and borrow routines from real people — with a seasonal look that feels like home.",
       },
-      { property: "og:title", content: "Stack It Up" },
+      { property: "og:title", content: "Stack It Up — Seasonal Goal & To-Do Planner" },
       {
         property: "og:description",
-        content: "A calm, seasonal planner for goals, to-dos and routines.",
+        content: "Plan target goals, keep a calm to-do list, and borrow routines from real people — with a seasonal look that feels like home.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Stack It Up — Seasonal Goal & To-Do Planner" },
+      { name: "twitter:description", content: "Plan target goals, keep a calm to-do list, and borrow routines from real people — with a seasonal look that feels like home." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077946f092551612ce8f1b8d883afd7f/id-preview-ee3bf17f--450aa5a1-033a-4ee1-87d2-2d9e05f2b51f.lovable.app-1786386262002.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/077946f092551612ce8f1b8d883afd7f/id-preview-ee3bf17f--450aa5a1-033a-4ee1-87d2-2d9e05f2b51f.lovable.app-1786386262002.png" },
     ],
     links: [
       {

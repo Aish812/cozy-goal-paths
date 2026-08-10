@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Stack It Up — Seasonal Goal & To-Do Planner" },
       {
         property: "og:description",
-        content: "A calm, seasonal planner for goals, to-dos and routines that keep you motivated.",
+        content: "Plan target goals, keep a calm to-do list, and borrow routines from real people — with a seasonal look that feels like home.",
       },
     ],
   }),
