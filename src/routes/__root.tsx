@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { PlannerProvider } from "../components/planner-provider";
+import { SiteLayout } from "../components/site-layout";
+
 
 function NotFoundComponent() {
   return (
@@ -131,8 +134,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <PlannerProvider>
+        <SiteLayout>
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </SiteLayout>
+      </PlannerProvider>
     </QueryClientProvider>
   );
 }
+
