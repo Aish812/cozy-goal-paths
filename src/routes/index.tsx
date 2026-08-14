@@ -302,6 +302,17 @@ function PlanPage() {
             Borrow someone's routine
           </Link>
         </div>
+        <p className="mt-6 text-sm text-muted-foreground">
+          Building a health habit?{" "}
+          <Link
+            to="/supplements"
+            className="text-foreground underline decoration-accent underline-offset-4 transition-colors duration-300 hover:text-accent"
+          >
+            Read the pros and cons of taking supplements
+          </Link>{" "}
+          before you add it to your routine.
+        </p>
+
       </section>
     </div>
   );

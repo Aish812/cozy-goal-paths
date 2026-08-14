@@ -10,6 +10,14 @@ const NAV = [
   { to: "/about", label: "About" },
 ] as const;
 
+const FOOTER_LINKS = [
+  { to: "/supplements", label: "Supplements: pros & cons" },
+  { to: "/privacy", label: "Privacy Policy" },
+  { to: "/terms", label: "Terms of Use" },
+  { to: "/cookies", label: "Cookie Policy" },
+] as const;
+
+
 export function SiteLayout({ children }: { children: ReactNode }) {
   const { season } = usePlanner();
   const current = SEASONS.find((s) => s.id === season)!;
@@ -60,7 +68,24 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
           <SeasonPicker />
         </div>
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 border-t border-border/70 px-4 py-6 text-sm sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            {FOOTER_LINKS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="text-muted-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Stack It Up. Made for small, steady days.
+          </p>
+        </div>
       </footer>
+
     </div>
   );
 }
