@@ -4,6 +4,7 @@ import { usePlanner } from "./planner-provider";
 import { SeasonPicker } from "./season-picker";
 import { SEASONS } from "@/lib/seasons";
 import { CURSOR_CSS, WALLPAPERS } from "@/lib/personalise";
+import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/", label: "Plan" },
@@ -27,7 +28,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div
       data-season={season}
-      className="season-surface min-h-screen"
+      className={cn("season-surface min-h-screen", cursor !== "default" && "custom-cursor")}
       style={{
         cursor: CURSOR_CSS[cursor],
         ...(paper.image
