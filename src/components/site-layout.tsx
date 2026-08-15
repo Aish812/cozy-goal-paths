@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { usePlanner } from "./planner-provider";
 import { SeasonPicker } from "./season-picker";
 import { SEASONS } from "@/lib/seasons";
+import { CURSOR_CSS, WALLPAPERS } from "@/lib/personalise";
 
 const NAV = [
   { to: "/", label: "Plan" },
@@ -19,11 +20,26 @@ const FOOTER_LINKS = [
 
 
 export function SiteLayout({ children }: { children: ReactNode }) {
-  const { season } = usePlanner();
+  const { season, wallpaper, cursor } = usePlanner();
   const current = SEASONS.find((s) => s.id === season)!;
+  const paper = WALLPAPERS.find((w) => w.id === wallpaper)!;
 
   return (
-    <div data-season={season} className="season-surface min-h-screen">
+    <div
+      data-season={season}
+      className="season-surface min-h-screen"
+      style={{
+        cursor: CURSOR_CSS[cursor],
+        ...(paper.image
+          ? {
+              backgroundImage: `${paper.image}, var(--gradient-season)`,
+              backgroundSize: paper.size ?? "cover",
+              backgroundAttachment: "fixed",
+              backgroundPosition: "center",
+            }
+          : {}),
+      }}
+    >
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/80 backdrop-blur-md">
         <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Link to="/" className="flex min-w-0 items-center gap-2.5 group">
