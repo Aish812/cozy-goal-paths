@@ -40,6 +40,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           : {}),
       }}
     >
+      {paper.image ? (
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-0 bg-background/70 transition-opacity duration-700"
+        />
+      ) : null}
+      <div className="relative z-10">
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/80 backdrop-blur-md">
         <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Link to="/" className="flex min-w-0 items-center gap-2.5 group">
@@ -101,7 +108,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </p>
         </div>
       </footer>
-
+      </div>
     </div>
   );
 }
