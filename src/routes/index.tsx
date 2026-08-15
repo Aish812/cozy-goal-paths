@@ -15,6 +15,7 @@ import {
 import { GoalBoard } from "@/components/goal-board";
 import { TodoList } from "@/components/todo-list";
 import { MonthTracker } from "@/components/month-tracker";
+import { PersonaliseBar } from "@/components/personalise-bar";
 import { SeasonPicker } from "@/components/season-picker";
 import { usePlanner } from "@/components/planner-provider";
 import { SEASONS } from "@/lib/seasons";
@@ -159,6 +160,10 @@ function PlanPage() {
 
       <div className="mt-16">
         <MonthTracker />
+      </div>
+
+      <div className="mt-6">
+        <PersonaliseBar />
       </div>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:gap-10">

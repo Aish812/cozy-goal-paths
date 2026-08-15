@@ -1,6 +1,7 @@
 import { createContext, useContext, useMemo, type ReactNode } from "react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
 import { seasonFromDate, type Season } from "@/lib/seasons";
+import type { CursorId, MarkId, WallpaperId } from "@/lib/personalise";
 import {
   STARTER_GOALS,
   STARTER_TODOS,
@@ -13,6 +14,12 @@ import {
 type PlannerValue = {
   season: Season;
   setSeason: (s: Season) => void;
+  mark: MarkId;
+  setMark: (m: MarkId) => void;
+  wallpaper: WallpaperId;
+  setWallpaper: (w: WallpaperId) => void;
+  cursor: CursorId;
+  setCursor: (c: CursorId) => void;
   goals: Goal[];
   todos: Todo[];
   addGoal: (input: { title: string; note: string; target: string }) => void;
@@ -30,6 +37,9 @@ const PlannerContext = createContext<PlannerValue | null>(null);
 
 export function PlannerProvider({ children }: { children: ReactNode }) {
   const seasonStore = useLocalStorage<Season>("stackitup.season", seasonFromDate());
+  const markStore = useLocalStorage<MarkId>("stackitup.mark", "tick");
+  const wallpaperStore = useLocalStorage<WallpaperId>("stackitup.wallpaper", "season");
+  const cursorStore = useLocalStorage<CursorId>("stackitup.cursor", "spark");
   const goalStore = useLocalStorage<Goal[]>("stackitup.goals", STARTER_GOALS);
   const todoStore = useLocalStorage<Todo[]>("stackitup.todos", STARTER_TODOS);
 
@@ -40,6 +50,12 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
     return {
       season: seasonStore.value,
       setSeason: (s) => seasonStore.setValue(s),
+      mark: markStore.value,
+      setMark: (m) => markStore.setValue(m),
+      wallpaper: wallpaperStore.value,
+      setWallpaper: (w) => wallpaperStore.setValue(w),
+      cursor: cursorStore.value,
+      setCursor: (c) => cursorStore.setValue(c),
       goals: goalStore.value,
       todos: todoStore.value,
       addGoal: ({ title, note, target }) =>
@@ -108,7 +124,7 @@ export function PlannerProvider({ children }: { children: ReactNode }) {
         seasonStore.setValue(tpl.season);
       },
     };
-  }, [seasonStore, goalStore, todoStore]);
+  }, [seasonStore, goalStore, todoStore, markStore, wallpaperStore, cursorStore]);
 
   return <PlannerContext.Provider value={value}>{children}</PlannerContext.Provider>;
 }

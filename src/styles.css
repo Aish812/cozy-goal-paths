@@ -247,3 +247,12 @@
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
+
+/* Creative cursors: interactive elements inherit the chosen pointer glyph. */
+.custom-cursor a,
+.custom-cursor button,
+.custom-cursor label,
+.custom-cursor summary,
+.custom-cursor [role="button"] {
+  cursor: inherit;
+}

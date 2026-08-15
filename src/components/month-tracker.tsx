@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { Flame, Sparkles, Trophy } from "lucide-react";
 import { useLocalStorage } from "@/hooks/use-local-storage";
+import { MARKS } from "@/lib/personalise";
+import { usePlanner } from "./planner-provider";
 import { cn } from "@/lib/utils";
 
 const MONTHS = [
@@ -16,6 +18,8 @@ export function MonthTracker() {
   const today = new Date();
   const key = monthKey(today);
   const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+  const { mark } = usePlanner();
+  const glyph = (MARKS.find((m) => m.id === mark) ?? MARKS[0]).glyph;
   const store = useLocalStorage<Record<string, number[]>>("stackitup.monthTicks", {});
   const ticked = store.value[key] ?? [];
 
@@ -61,7 +65,7 @@ export function MonthTracker() {
           </h2>
           <p className="mt-2 max-w-md text-sm text-muted-foreground">
             One box a day. Tap it when you showed up — that's it. The bar fills, the streak grows,
-            and the month quietly turns into proof.
+            and the month quietly turns into proof. Ticks use your chosen mark ({glyph}).
           </p>
         </div>
         <div className="flex gap-4">
@@ -111,14 +115,20 @@ export function MonthTracker() {
               aria-pressed={on}
               aria-label={`Day ${day}${on ? ", completed" : ""}`}
               className={cn(
-                "aspect-square rounded-lg border text-xs font-medium transition-all duration-300 ease-out hover:-translate-y-0.5",
+                "grid aspect-square place-items-center rounded-lg border text-xs font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105",
                 on
-                  ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                  ? "border-primary bg-primary/12 text-primary shadow-sm"
                   : "border-border bg-background/60 text-muted-foreground hover:bg-secondary hover:text-foreground",
                 isToday && !on && "border-accent ring-2 ring-accent/40",
               )}
             >
-              {day}
+              {on ? (
+                <span aria-hidden className="text-base leading-none">
+                  {glyph}
+                </span>
+              ) : (
+                day
+              )}
             </button>
           );
         })}
