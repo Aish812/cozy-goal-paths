@@ -9,10 +9,12 @@ import { cn } from "@/lib/utils";
 const NAV = [
   { to: "/", label: "Plan" },
   { to: "/templates", label: "Routines" },
+  { to: "/help", label: "Help" },
   { to: "/about", label: "About" },
 ] as const;
 
 const FOOTER_LINKS = [
+  { to: "/help", label: "Help guides" },
   { to: "/supplements", label: "Supplements: pros & cons" },
   { to: "/privacy", label: "Privacy Policy" },
   { to: "/terms", label: "Terms of Use" },
