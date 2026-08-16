@@ -20,6 +20,8 @@ import { SeasonPicker } from "@/components/season-picker";
 import { usePlanner } from "@/components/planner-provider";
 import { SEASONS } from "@/lib/seasons";
 import heroDesk from "@/assets/hero-desk.jpg";
+import heroLarge from "@/assets/hero-desk-1400.webp";
+import heroSmall from "@/assets/hero-desk-760.webp";
 
 const TITLE = "Stack It Up — Daily Goal Planner & Habit Tracker";
 const DESCRIPTION =
