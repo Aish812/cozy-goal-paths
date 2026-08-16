@@ -51,7 +51,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       ) : null}
       <div className="relative z-10">
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex min-w-0 items-center gap-2.5 group">
             <span
               aria-hidden
@@ -66,14 +66,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               </span>
             </span>
           </Link>
-          <nav className="flex items-center gap-1 text-sm">
+          <nav className="-mx-1 flex items-center gap-1 overflow-x-auto px-1 text-sm [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
                 activeProps={{ className: "bg-secondary text-foreground" }}
-                className="rounded-full px-3 py-1.5 text-muted-foreground transition-colors duration-300 hover:bg-secondary hover:text-foreground"
+                className="shrink-0 rounded-full px-3 py-2 text-muted-foreground transition-colors duration-300 hover:bg-secondary hover:text-foreground"
               >
                 {item.label}
               </Link>
