@@ -15,7 +15,9 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Why a planner should feel like home — and how the seasonal moods work.",
       },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/about" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/about" }],
   }),
   component: AboutPage,
 });

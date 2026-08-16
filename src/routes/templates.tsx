@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { TEMPLATES } from "@/lib/planner-data";
 import { SEASONS } from "@/lib/seasons";
@@ -18,7 +18,9 @@ export const Route = createFileRoute("/templates")({
         property: "og:description",
         content: "Real people's routines you can copy into your planner in one click.",
       },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/templates" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/templates" }],
   }),
   component: TemplatesPage,
 });
@@ -38,7 +40,18 @@ function TemplatesPage() {
           Steal shamelessly. Each routine loads its goals and to-dos straight into your planner, and
           shifts the app into that season's mood.
         </p>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          Struggling to keep one going?{" "}
+          <Link
+            to="/help"
+            className="text-foreground underline decoration-accent underline-offset-4 transition-colors duration-300 hover:text-accent"
+          >
+            Read the help guides for procrastination, stress, anxiety and sleep
+          </Link>
+          .
+        </p>
       </header>
+
 
       <ul className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {TEMPLATES.map((tpl) => {

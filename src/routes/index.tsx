@@ -20,10 +20,12 @@ import { SeasonPicker } from "@/components/season-picker";
 import { usePlanner } from "@/components/planner-provider";
 import { SEASONS } from "@/lib/seasons";
 import heroDesk from "@/assets/hero-desk.jpg";
+import heroLarge from "@/assets/hero-desk-1400.webp";
+import heroSmall from "@/assets/hero-desk-760.webp";
 
-const TITLE = "Stack It Up — Plan Beautifully, Track Effortlessly";
+const TITLE = "Stack It Up — Daily Goal Planner & Habit Tracker";
 const DESCRIPTION =
-  "Build your day with an easy, gamified planner. Streaks, points and a monthly tick-box tracker, with seasonal backgrounds and calm themes on mobile, tablet and desktop.";
+  "A free, calm daily planner: set goals, keep a short to-do list and tick off a monthly habit tracker with streaks and points. Seasonal themes, works on any phone.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +34,11 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/" }],
   }),
   component: PlanPage,
 });
@@ -145,11 +151,15 @@ function PlanPage() {
 
         <div className="relative">
           <img
-            src={heroDesk}
+            src={heroSmall}
+            srcSet={`${heroSmall} 760w, ${heroLarge} 1400w, ${heroDesk} 1600w`}
+            sizes="(max-width: 1024px) 100vw, 45vw"
             alt="A notebook, warm lamp and mug on a wooden desk beside a rainy autumn window"
             width={1600}
             height={1104}
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full rounded-3xl border border-border object-cover shadow-[var(--shadow-lift)] transition-transform duration-500 ease-out hover:scale-[1.01]"
           />
           <div className="absolute -bottom-5 left-4 right-4 sm:left-6 sm:right-auto">
@@ -307,7 +317,7 @@ function PlanPage() {
             Borrow someone's routine
           </Link>
         </div>
-        <p className="mt-6 text-sm text-muted-foreground">
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
           Building a health habit?{" "}
           <Link
             to="/supplements"
@@ -315,7 +325,14 @@ function PlanPage() {
           >
             Read the pros and cons of taking supplements
           </Link>{" "}
-          before you add it to your routine.
+          before you add it to your routine. Struggling to start at all?{" "}
+          <Link
+            to="/help"
+            className="text-foreground underline decoration-accent underline-offset-4 transition-colors duration-300 hover:text-accent"
+          >
+            Browse the help guides for procrastination, stress, anxiety and insomnia
+          </Link>
+          .
         </p>
 
       </section>
