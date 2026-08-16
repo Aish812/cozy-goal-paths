@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupplementsRouteImport } from './routes/supplements'
 import { Route as TemplatesRouteImport } from './routes/templates'
@@ -30,6 +31,11 @@ const AboutRoute = AboutRouteImport.update({
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
+  '/help': typeof HelpRoute
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
+  '/help': typeof HelpRoute
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
+  '/help': typeof HelpRoute
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cookies'
+    | '/help'
     | '/privacy'
     | '/supplements'
     | '/templates'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cookies'
+    | '/help'
     | '/privacy'
     | '/supplements'
     | '/templates'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cookies'
+    | '/help'
     | '/privacy'
     | '/supplements'
     | '/templates'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CookiesRoute: typeof CookiesRoute
+  HelpRoute: typeof HelpRoute
   PrivacyRoute: typeof PrivacyRoute
   SupplementsRoute: typeof SupplementsRoute
   TemplatesRoute: typeof TemplatesRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/cookies'
       fullPath: '/cookies'
       preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CookiesRoute: CookiesRoute,
+  HelpRoute: HelpRoute,
   PrivacyRoute: PrivacyRoute,
   SupplementsRoute: SupplementsRoute,
   TemplatesRoute: TemplatesRoute,
