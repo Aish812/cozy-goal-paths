@@ -17,6 +17,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SupplementsRouteImport } from './routes/supplements'
 import { Route as TemplatesRouteImport } from './routes/templates'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as HelpSlugRouteImport } from './routes/help.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,37 +59,45 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HelpSlugRoute = HelpSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => HelpRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/help': typeof HelpRoute
+  '/help': typeof HelpRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/help/$slug': typeof HelpSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/help': typeof HelpRoute
+  '/help': typeof HelpRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/help/$slug': typeof HelpSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cookies': typeof CookiesRoute
-  '/help': typeof HelpRoute
+  '/help': typeof HelpRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/supplements': typeof SupplementsRoute
   '/templates': typeof TemplatesRoute
   '/terms': typeof TermsRoute
+  '/help/$slug': typeof HelpSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/templates'
     | '/terms'
+    | '/help/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/templates'
     | '/terms'
+    | '/help/$slug'
   id:
     | '__root__'
     | '/'
@@ -121,13 +132,14 @@ export interface FileRouteTypes {
     | '/supplements'
     | '/templates'
     | '/terms'
+    | '/help/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CookiesRoute: typeof CookiesRoute
-  HelpRoute: typeof HelpRoute
+  HelpRoute: typeof HelpRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   SupplementsRoute: typeof SupplementsRoute
   TemplatesRoute: typeof TemplatesRoute
@@ -192,14 +204,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/help/$slug': {
+      id: '/help/$slug'
+      path: '/$slug'
+      fullPath: '/help/$slug'
+      preLoaderRoute: typeof HelpSlugRouteImport
+      parentRoute: typeof HelpRoute
+    }
   }
 }
+
+interface HelpRouteChildren {
+  HelpSlugRoute: typeof HelpSlugRoute
+}
+
+const HelpRouteChildren: HelpRouteChildren = {
+  HelpSlugRoute: HelpSlugRoute,
+}
+
+const HelpRouteWithChildren = HelpRoute._addFileChildren(HelpRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CookiesRoute: CookiesRoute,
-  HelpRoute: HelpRoute,
+  HelpRoute: HelpRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   SupplementsRoute: SupplementsRoute,
   TemplatesRoute: TemplatesRoute,
