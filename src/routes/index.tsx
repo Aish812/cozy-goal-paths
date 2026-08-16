@@ -149,11 +149,15 @@ function PlanPage() {
 
         <div className="relative">
           <img
-            src={heroDesk}
+            src={heroSmall}
+            srcSet={`${heroSmall} 760w, ${heroLarge} 1400w, ${heroDesk} 1600w`}
+            sizes="(max-width: 1024px) 100vw, 45vw"
             alt="A notebook, warm lamp and mug on a wooden desk beside a rainy autumn window"
             width={1600}
             height={1104}
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full rounded-3xl border border-border object-cover shadow-[var(--shadow-lift)] transition-transform duration-500 ease-out hover:scale-[1.01]"
           />
           <div className="absolute -bottom-5 left-4 right-4 sm:left-6 sm:right-auto">
