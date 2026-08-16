@@ -21,9 +21,9 @@ import { usePlanner } from "@/components/planner-provider";
 import { SEASONS } from "@/lib/seasons";
 import heroDesk from "@/assets/hero-desk.jpg";
 
-const TITLE = "Stack It Up — Plan Beautifully, Track Effortlessly";
+const TITLE = "Stack It Up — Daily Goal Planner & Habit Tracker";
 const DESCRIPTION =
-  "Build your day with an easy, gamified planner. Streaks, points and a monthly tick-box tracker, with seasonal backgrounds and calm themes on mobile, tablet and desktop.";
+  "A free, calm daily planner: set goals, keep a short to-do list and tick off a monthly habit tracker with streaks and points. Seasonal themes, works on any phone.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +32,11 @@ export const Route = createFileRoute("/")({
       { name: "description", content: DESCRIPTION },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/" }],
   }),
   component: PlanPage,
 });
