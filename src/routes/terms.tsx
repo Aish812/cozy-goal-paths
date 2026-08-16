@@ -13,7 +13,9 @@ export const Route = createFileRoute("/terms")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/terms" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/terms" }],
   }),
   component: TermsPage,
 });

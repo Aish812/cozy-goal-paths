@@ -18,7 +18,9 @@ export const Route = createFileRoute("/templates")({
         property: "og:description",
         content: "Real people's routines you can copy into your planner in one click.",
       },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/templates" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/templates" }],
   }),
   component: TemplatesPage,
 });

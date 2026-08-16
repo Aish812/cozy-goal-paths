@@ -14,7 +14,9 @@ export const Route = createFileRoute("/supplements")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://cozy-goal-paths.lovable.app/supplements" },
     ],
+    links: [{ rel: "canonical", href: "https://cozy-goal-paths.lovable.app/supplements" }],
   }),
   component: SupplementsPage,
 });
