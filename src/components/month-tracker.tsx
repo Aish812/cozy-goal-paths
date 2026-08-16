@@ -19,7 +19,7 @@ export function MonthTracker() {
   const key = monthKey(today);
   const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
   const { mark } = usePlanner();
-  const glyph = (MARKS.find((m) => m.id === mark) ?? MARKS[0]).glyph;
+  const glyph = MARKS.find((m) => m.id === mark)?.glyph ?? "✓";
   const store = useLocalStorage<Record<string, number[]>>("stackitup.monthTicks", {});
   const ticked = store.value[key] ?? [];
 
