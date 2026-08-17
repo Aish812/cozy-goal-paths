@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://cozy-goal-paths.lovable.app/sitemap.xml
