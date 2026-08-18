@@ -1,14 +1,28 @@
-# Welcome to your Lovable project
+# Cozy Goals
+
+Build  me a Web App Stack it up 
+Website help people plan and mark their target goals , add to do list , templates to get idea of different people routine 
+Design style 
+Vibe - seasonal bases , autumn , winter , fall , summer , rain 
+calm , feels like home that keeps you motivated 
+Features - 
+Responsive design 
+tech - which is best suitable for
+Requirements - make it fully responsive  
+- use clean , good spacing and typography 
+- add hover states and  smooth transitions
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://cozy-goal-paths.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/450aa5a1-033a-4ee1-87d2-2d9e05f2b51f).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +34,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
